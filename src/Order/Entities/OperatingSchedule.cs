@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using RotatingWorkSchedule.Enums;
+using WorkSchedule.Enums;
 
-namespace rotating_work_schedule.Entities
+namespace WorkSchedule.Order.Entities
 {
    public class OperatingSchedule
    {

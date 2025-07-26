@@ -1,3 +1,6 @@
+using WorkSchedule.Order.Validators;
+using WorkSchedule.Swagger.Filters;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,16 +8,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // builder.Services.AddAuthorization();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<ValidateOrderSchedule>();
+builder.Services.AddSwaggerGen(c =>
+{
+    // Configuração para usar descrições dos enums
+    c.SchemaFilter<EnumSchemaFilter>();
+});
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 

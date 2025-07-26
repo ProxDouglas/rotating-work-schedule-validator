@@ -4,7 +4,8 @@
 ## Api de Geração de escalas
 
 **URL:** /api/workschedule
-Method: HTTP POST
+
+Metodo: HTTP POST
 
 ```json
 {

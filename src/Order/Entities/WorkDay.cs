@@ -1,12 +1,12 @@
-namespace rotating_work_schedule.Entities;
+namespace WorkSchedule.Order.Entities;
 
 using System.ComponentModel.DataAnnotations;
-using RotatingWorkSchedule.Enums;
+using WorkSchedule.Enums;
 
 public class WorkDay
 {
    [Required]
-   public DateTime EffectiveDate { get; set; }
+   public DateOnly EffectiveDate { get; set; }
 
    [Required] // Campo obrigatório
    public DayOperating DayOperating { get; set; }

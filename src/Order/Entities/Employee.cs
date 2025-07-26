@@ -1,4 +1,4 @@
-namespace rotating_work_schedule.Entities;
+namespace WorkSchedule.Order.Entities;
 
 using System.ComponentModel.DataAnnotations;
 
