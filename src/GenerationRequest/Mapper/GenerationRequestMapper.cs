@@ -1,1 +1,0 @@
-namespace WorkSchedule.GenerationRequest.Mapper;

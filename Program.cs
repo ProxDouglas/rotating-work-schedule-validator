@@ -1,6 +1,7 @@
 using WorkSchedule.Filters;
 using WorkSchedule.AplicationStartup.RabbitMq;
 using WorkSchedule.GenerationRequest.Validators;
+using WorkSchedule.GenerationRequest.Mapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,7 @@ builder.Services.AddControllers();
 // builder.Services.AddAuthorization();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddScoped<ValidateOrderSchedule>();
+builder.Services.AddScoped<WorkScheduleRequestMapper>();
 builder.Services.AddSwaggerGen(c =>
 {
     // Configuração para usar descrições dos enums
