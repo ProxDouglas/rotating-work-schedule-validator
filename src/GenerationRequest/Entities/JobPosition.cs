@@ -1,4 +1,4 @@
-namespace WorkSchedule.Order.Entities;
+namespace WorkSchedule.GenerationRequest.Entities;
 
 using System.ComponentModel.DataAnnotations;
 

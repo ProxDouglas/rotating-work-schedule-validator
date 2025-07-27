@@ -1,7 +1,7 @@
 namespace WorkSchedule.AplicationStartup.RabbitMq;
 
 using RabbitMQ.Client;
-using WorkSchedule.Order.QueueRabbitMQ;
+using WorkSchedule.QueueRabbitMQ;
 
 public class RabbitMqStartUp
 {

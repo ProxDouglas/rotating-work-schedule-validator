@@ -1,9 +1,9 @@
-namespace WorkSchedule.Order.Controllers;
+namespace WorkSchedule.GenerationRequest.Controllers;
 
 using Microsoft.AspNetCore.Mvc;
-using WorkSchedule.Order.Dtos;
-using WorkSchedule.Order.QueueRabbitMQ;
-using WorkSchedule.Order.Validators;
+using WorkSchedule.GenerationRequest.Dtos;
+using WorkSchedule.QueueRabbitMQ;
+using WorkSchedule.GenerationRequest.Validators;
 
 [ApiController]
 [Route("api/workschedule")]
@@ -19,13 +19,13 @@ public class WorkScheduleGeneratorController : ControllerBase
    }
 
    [HttpPost]
-   public async Task<IActionResult> GenerateSchedule([FromBody] WorkScheduleOrderDto orderDto)
+   public async Task<IActionResult> GenerateSchedule([FromBody] WorkScheduleRequestDto orderDto)
    {
       string validationResult = this.Validator.Run(orderDto);
       if (validationResult != "")
          return BadRequest(validationResult);
 
-      bool produced = await this.QueuePubSub.ProduceMessage(orderDto, "Order", "Order");
+      bool produced = await this.QueuePubSub.ProduceMessage(orderDto, "GenerationRequest", "GenerationRequest");
       if (!produced)
       {
          return StatusCode(500, new { message = "Erro ao enviar mensagem para a fila" });

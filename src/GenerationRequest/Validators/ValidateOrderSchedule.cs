@@ -1,27 +1,27 @@
-using WorkSchedule.Order.Dtos;
+using WorkSchedule.GenerationRequest.Dtos;
 
-namespace WorkSchedule.Order.Validators;
+namespace WorkSchedule.GenerationRequest.Validators;
 
 public class ValidateOrderSchedule
 {
-   public string Run(WorkScheduleOrderDto workScheduleOrderDto)
+   public string Run(WorkScheduleRequestDto WorkScheduleRequestDto)
    {
       string errorMessage = "";
 
       // Validate employee names
-      if (!this.AreEmployeeNamesUnique(workScheduleOrderDto.Employees))
+      if (!this.AreEmployeeNamesUnique(WorkScheduleRequestDto.Employees))
          errorMessage += " Duplicate employee names found.";
 
       // Validate job position names
-      if (!this.AreJobPositionNamesUnique(workScheduleOrderDto.JobPositions))
+      if (!this.AreJobPositionNamesUnique(WorkScheduleRequestDto.JobPositions))
          errorMessage += " Duplicate job position names found.";
 
       // Validate operating schedule days
-      if (!this.AreOperatingScheduleDaysUnique(workScheduleOrderDto.OperatingSchedule))
+      if (!this.AreOperatingScheduleDaysUnique(WorkScheduleRequestDto.OperatingSchedule))
          errorMessage += " Duplicate operating schedule days found.";
 
       // Validate work day dates
-      if (!this.AreWorkDayDatesUnique(workScheduleOrderDto.WorkDay))
+      if (!this.AreWorkDayDatesUnique(WorkScheduleRequestDto.WorkDay))
          errorMessage += " Duplicate work day dates found.";
 
       return errorMessage;

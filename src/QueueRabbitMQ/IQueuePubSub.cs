@@ -1,4 +1,4 @@
-namespace WorkSchedule.Order.QueueRabbitMQ;
+namespace WorkSchedule.QueueRabbitMQ;
 
 public interface IQueuePubSub
 {

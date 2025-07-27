@@ -1,4 +1,4 @@
-namespace WorkSchedule.Order.QueueRabbitMQ;
+namespace WorkSchedule.QueueRabbitMQ;
 
 using RabbitMQ.Client;
 

@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using WorkSchedule.Enums;
 
-namespace WorkSchedule.Order.Entities
+namespace WorkSchedule.GenerationRequest.Entities
 {
    public class OperatingSchedule
    {

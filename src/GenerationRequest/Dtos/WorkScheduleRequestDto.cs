@@ -1,8 +1,8 @@
-namespace WorkSchedule.Order.Dtos;
+namespace WorkSchedule.GenerationRequest.Dtos;
 
 using System.ComponentModel.DataAnnotations;
 
-public class WorkScheduleOrderDto
+public class WorkScheduleRequestDto
 {
     [MinLength(1, ErrorMessage = "A lista de funcionários não pode estar vazia.")]
     public List<EmployeeDto> Employees { get; set; } = new List<EmployeeDto>();

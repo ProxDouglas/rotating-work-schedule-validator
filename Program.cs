@@ -1,6 +1,6 @@
 using WorkSchedule.Filters;
 using WorkSchedule.AplicationStartup.RabbitMq;
-using WorkSchedule.Order.Validators;
+using WorkSchedule.GenerationRequest.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
 

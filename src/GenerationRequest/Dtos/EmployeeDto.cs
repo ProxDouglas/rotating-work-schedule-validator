@@ -1,4 +1,4 @@
-namespace WorkSchedule.Order.Dtos;
+namespace WorkSchedule.GenerationRequest.Dtos;
 
 using System.ComponentModel.DataAnnotations;
 
