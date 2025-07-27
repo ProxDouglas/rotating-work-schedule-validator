@@ -5,6 +5,7 @@ using WorkSchedule.GenerationRequest.Dtos;
 using WorkSchedule.QueueRabbitMQ;
 using WorkSchedule.GenerationRequest.Validators;
 using WorkSchedule.GenerationRequest.Mapper;
+using WorkSchedule.GenerationRequest.Entities;
 
 [ApiController]
 [Route("api/workschedule")]
@@ -27,8 +28,8 @@ public class WorkScheduleGeneratorController : ControllerBase
       string validationResult = this.Validator.Run(generationRequestDto);
       if (validationResult != "")
          return BadRequest(validationResult);
-      
-      var generationRequest = this.Mapper.toDto(this.Mapper.toEntity(generationRequestDto));
+
+      WorkScheduleRequest generationRequest = this.Mapper.toEntity(generationRequestDto);
 
       bool produced = await this.QueuePubSub.ProduceMessage(generationRequest, "GenerationRequest", "GenerationRequest");
       if (!produced)

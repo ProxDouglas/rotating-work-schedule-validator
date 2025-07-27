@@ -5,34 +5,29 @@ using RabbitMQ.Client;
 public class QueuePubSub : IQueuePubSub
 {
    private readonly IConnection _connection;
+   private readonly IChannel channel;
 
    public QueuePubSub(IConnection connection)
    {
       _connection = connection;
+      var channelTask = connection.CreateChannelAsync();
+      channelTask.Wait();
+      this.channel = channelTask.Result;
    }
 
    public async Task<bool> ProduceMessage<T>(T obj, string queueName, string exchange)
    {
       try
       {
-         using var channel = await _connection.CreateChannelAsync();
-
-         // Declara a fila se não existir
-         await channel.QueueDeclareAsync(
-             queue: queueName,
-             durable: true,
-             exclusive: false,
-             autoDelete: false,
-             arguments: null);
-
          // Serializa o objeto para JSON
          var body = this.serializeObject(obj);
 
          // Publica a mensagem na fila
-         await channel.BasicPublishAsync(
+         await this.channel.BasicPublishAsync(
              exchange: exchange,
              routingKey: queueName,
-             body: body);
+             body: body,
+             mandatory: true);
 
          return true;
       }
@@ -70,9 +65,11 @@ public class QueuePubSub : IQueuePubSub
       return body;
    }
 
-   private T deserializeObject<T>(BasicGetResult result)
+   private T? deserializeObject<T>(BasicGetResult result)
    {
       var message = System.Text.Encoding.UTF8.GetString(result.Body.ToArray());
+      if (string.IsNullOrEmpty(message))
+         return default;
       return System.Text.Json.JsonSerializer.Deserialize<T>(message);
    }
 }

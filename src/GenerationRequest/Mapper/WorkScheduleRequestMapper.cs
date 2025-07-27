@@ -49,7 +49,7 @@ public class WorkScheduleRequestMapper
 
       return new WorkScheduleRequest
       {
-         Id = Guid.NewGuid().ToString(),
+         Id = Guid.NewGuid(),
          Employees = dto.Employees.Select(e => new Employee
          {
             Name = e.Name,
