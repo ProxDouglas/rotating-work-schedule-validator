@@ -13,6 +13,6 @@ public class OperatingScheduleDto
    public TimeSpan End { get; set; }
 
    [Required(ErrorMessage = "O campo \"DayOperating\" é obrigatório")]
-   [Range(1, 7, ErrorMessage = "O \"DayOperating\" deve estar entre 1 e 7 dias semanais")]
+   [Range(0, 7, ErrorMessage = "O \"DayOperating\" deve estar entre 0 e 7 dias semanais")]
    public DayOperating DayOperating { get; set; }
 }
