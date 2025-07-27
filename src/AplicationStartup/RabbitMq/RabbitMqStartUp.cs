@@ -1,7 +1,7 @@
 namespace WorkSchedule.AplicationStartup.RabbitMq;
 
 using RabbitMQ.Client;
-using WorkSchedule.Order.QueueProducer;
+using WorkSchedule.Order.QueueRabbitMQ;
 
 public class RabbitMqStartUp
 {
@@ -34,7 +34,7 @@ public class RabbitMqStartUp
     builder.Services.AddSingleton<IConnection>(connection);
 
     // Registra o QueueProducer
-    builder.Services.AddScoped<IQueueProducer, QueueProducer>();
+    builder.Services.AddScoped<IQueuePubSub, QueuePubSub>();
     try
     {
       builder.Services.Configure<RabbitMqConfig>(

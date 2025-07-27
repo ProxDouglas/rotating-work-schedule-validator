@@ -136,3 +136,28 @@ Metodo: HTTP POST
 }
 
 ```
+
+## Criação do RabbitMQ via docker compose
+
+Para utilizar a aplicação é necessária a 
+
+```yml
+version: "3.8"
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"         # Porta para conexão AMQP
+      - "15672:15672"       # Porta para acessar a interface web
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
+volumes:
+  rabbitmq_data:
+
+```

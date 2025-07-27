@@ -2,7 +2,7 @@ namespace WorkSchedule.Order.Controllers;
 
 using Microsoft.AspNetCore.Mvc;
 using WorkSchedule.Order.Dtos;
-using WorkSchedule.Order.QueueProducer;
+using WorkSchedule.Order.QueueRabbitMQ;
 using WorkSchedule.Order.Validators;
 
 [ApiController]
@@ -10,12 +10,12 @@ using WorkSchedule.Order.Validators;
 public class WorkScheduleGeneratorController : ControllerBase
 {
    private readonly ValidateOrderSchedule Validator;
-   private readonly IQueueProducer QueueProducer;
+   private readonly IQueuePubSub QueuePubSub;
 
-   public WorkScheduleGeneratorController(ValidateOrderSchedule validator, IQueueProducer queueProducer)
+   public WorkScheduleGeneratorController(ValidateOrderSchedule validator, IQueuePubSub queuePubSub)
    {
       this.Validator = validator;
-      this.QueueProducer = queueProducer;
+      this.QueuePubSub = queuePubSub;
    }
 
    [HttpPost]
@@ -25,7 +25,7 @@ public class WorkScheduleGeneratorController : ControllerBase
       if (validationResult != "")
          return BadRequest(validationResult);
 
-      bool produced = await this.QueueProducer.SendMessage(orderDto, "Order", "Order");
+      bool produced = await this.QueuePubSub.ProduceMessage(orderDto, "Order", "Order");
       if (!produced)
       {
          return StatusCode(500, new { message = "Erro ao enviar mensagem para a fila" });
