@@ -9,6 +9,8 @@ public class WorkScheduleRequestMapper
    {
       return new WorkScheduleRequestDto
       {
+         Email = entity.Email,
+         WebHookUrl = entity.WebHookUrl,
          Employees = entity.Employees.Select(e => new EmployeeDto 
          {
             Name = e.Name,
@@ -50,6 +52,8 @@ public class WorkScheduleRequestMapper
       return new WorkScheduleRequest
       {
          Id = Guid.NewGuid(),
+         Email = dto.Email,
+         WebHookUrl = dto.WebHookUrl,
          Employees = dto.Employees.Select(e => new Employee
          {
             Name = e.Name,

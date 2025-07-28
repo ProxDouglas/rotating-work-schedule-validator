@@ -2,6 +2,7 @@ using WorkSchedule.Filters;
 using WorkSchedule.AplicationStartup.RabbitMq;
 using WorkSchedule.GenerationRequest.Validators;
 using WorkSchedule.GenerationRequest.Mapper;
+using WorkSchedule.SendGeneratedSchedule.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,8 @@ builder.Services.AddSwaggerGen(c =>
 
 // Configurar RabbitMQ
 new RabbitMqStartUp().ConfigureServices(builder);
+
+builder.Services.AddHostedService<CosumerScheduleService>();
 
 var app = builder.Build();
 

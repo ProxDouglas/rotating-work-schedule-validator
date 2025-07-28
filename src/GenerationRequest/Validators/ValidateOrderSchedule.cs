@@ -24,6 +24,9 @@ public class ValidateOrderSchedule
       if (!this.AreWorkDayDatesUnique(WorkScheduleRequestDto.WorkDay))
          errorMessage += " Duplicate work day dates found.";
 
+      if (WorkScheduleRequestDto.Email.Length == 0 && WorkScheduleRequestDto.WebHookUrl.Length == 0)
+         errorMessage += " Email and WebHookUrl must be provided.";
+
       return errorMessage;
    }
 

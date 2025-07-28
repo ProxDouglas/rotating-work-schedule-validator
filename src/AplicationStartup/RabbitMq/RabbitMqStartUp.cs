@@ -5,7 +5,7 @@ using WorkSchedule.QueueRabbitMQ;
 
 public class RabbitMqStartUp
 {
-  private readonly string[] _defaultQueues = { "GenerationRequest", "ScheduleRequest" };
+  private readonly string[] _defaultQueues = { "GenerationRequest", "GenerationResponse" };
   private const string DEFAULT_HOST = "localhost";
   private const int DEFAULT_PORT = 5672;
   private const string DEFAULT_USER = "guest";
@@ -68,7 +68,7 @@ public class RabbitMqStartUp
   {
     builder.Services.Configure<RabbitMqConfig>(
       builder.Configuration.GetSection("RabbitMQ"));
-      
+
     builder.Services.Configure<RabbitMqConfig>("Schedule",
       builder.Configuration.GetSection("RabbitMQ_Schedule"));
   }

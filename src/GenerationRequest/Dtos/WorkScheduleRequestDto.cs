@@ -4,6 +4,9 @@ using System.ComponentModel.DataAnnotations;
 
 public class WorkScheduleRequestDto
 {
+    public string Email { get; set; } = string.Empty;
+    public string WebHookUrl { get; set; } = string.Empty;
+
     [MinLength(1, ErrorMessage = "A lista de funcionários não pode estar vazia.")]
     public List<EmployeeDto> Employees { get; set; } = new List<EmployeeDto>();
 
